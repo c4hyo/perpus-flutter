@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class BooksModel {
   String? idBook;
   String? title;
-  String? idWritter;
+  String? writter;
   int? pages;
   int? release;
   String? genre;
@@ -15,7 +15,7 @@ class BooksModel {
     this.idBook,
     this.description,
     this.genre,
-    this.idWritter,
+    this.writter,
     this.pages,
     this.qty,
     this.release,
@@ -27,7 +27,7 @@ class BooksModel {
     idBook = doc.id;
     description = doc['description'];
     genre = doc['genre'];
-    idWritter = doc['id_writter'];
+    writter = doc['writter'];
     pages = doc['pages'];
     qty = doc['qty'];
     release = doc['release'];

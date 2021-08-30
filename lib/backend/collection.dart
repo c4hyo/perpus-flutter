@@ -5,4 +5,6 @@ class FirebaseData {
   static FirebaseAuth auth = FirebaseAuth.instance;
   static CollectionReference user =
       FirebaseFirestore.instance.collection("users");
+  static CollectionReference books =
+      FirebaseFirestore.instance.collection("books");
 }
