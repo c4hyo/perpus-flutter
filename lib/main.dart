@@ -1,10 +1,13 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:perpus/frontend/screen/auth/login.dart';
-import 'package:perpus/other/color.dart';
+import 'package:perpus/backend/controller/authController.dart';
+import 'package:perpus/wrap.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 
@@ -12,14 +15,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      initialBinding: AuthBinding(),
       debugShowCheckedModeBanner: false,
-      home: LoginScreen(),
+      home: WrapAuth(),
       theme: ThemeData(
-        textTheme: GoogleFonts.openSansTextTheme(),
-        // bottomNavigationBarTheme: BottomNavigationBarThemeData(
-        //   backgroundColor: ColorData.primary,
-        //   elevation: 10,
-        // ),
+        textTheme: GoogleFonts.latoTextTheme(),
       ),
     );
   }

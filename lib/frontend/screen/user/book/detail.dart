@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
 import 'package:get/get.dart';
+import 'package:perpus/backend/controller/user/homeControllerUser.dart';
 import 'package:perpus/frontend/component/card.dart';
 import 'package:perpus/other/color.dart';
 
 class DetailBookUser extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final homeController = Get.find<HomeUserController>();
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -24,14 +26,12 @@ class DetailBookUser extends StatelessWidget {
                   Container(
                     height: 225,
                     width: double.infinity,
-
                     decoration: BoxDecoration(
-                      color: ColorData.primary,
-                      borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.elliptical(250, 25),
-                        bottomRight: Radius.elliptical(250, 25),
-                      )
-                    ),
+                        color: primary,
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.elliptical(250, 25),
+                          bottomRight: Radius.elliptical(250, 25),
+                        )),
                   ),
                   Positioned.fill(
                     left: 15,
@@ -52,7 +52,7 @@ class DetailBookUser extends StatelessWidget {
                           width: 40,
                           child: Icon(
                             FontAwesome5.arrow_left,
-                            color: ColorData.textPrimary,
+                            color: textPrimary,
                           ),
                         ),
                       ),
@@ -70,7 +70,7 @@ class DetailBookUser extends StatelessWidget {
                           width: 40,
                           child: Icon(
                             FontAwesome5.heart,
-                            color: ColorData.textSecondary,
+                            color: textSecondary,
                           ),
                         ),
                       ),
@@ -87,7 +87,7 @@ class DetailBookUser extends StatelessWidget {
                       "Belajar Flutter Masa Lalu",
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        color: ColorData.textPrimary,
+                        color: textPrimary,
                         fontWeight: FontWeight.bold,
                         fontSize: 24,
                       ),
@@ -96,7 +96,7 @@ class DetailBookUser extends StatelessWidget {
                       "Muchammad Dwi Cahyo Nugroho",
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        color: ColorData.textSecondary,
+                        color: textSecondary,
                         fontWeight: FontWeight.w500,
                         fontSize: 18,
                       ),
@@ -110,7 +110,7 @@ class DetailBookUser extends StatelessWidget {
                       softWrap: true,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
-                        color: ColorData.textPrimary,
+                        color: textPrimary,
                         fontWeight: FontWeight.bold,
                         fontSize: 17,
                       ),
@@ -118,21 +118,21 @@ class DetailBookUser extends StatelessWidget {
                     Text(
                       "Genre : Fiction, Crime, Drama, Thriler",
                       style: TextStyle(
-                        color: ColorData.textPrimary,
+                        color: textPrimary,
                         fontSize: 15,
                       ),
                     ),
                     Text(
                       "Pages : 180",
                       style: TextStyle(
-                        color: ColorData.textPrimary,
+                        color: textPrimary,
                         fontSize: 15,
                       ),
                     ),
                     Text(
                       "Release : 2090",
                       style: TextStyle(
-                        color: ColorData.textPrimary,
+                        color: textPrimary,
                         fontSize: 15,
                       ),
                     ),
@@ -143,25 +143,28 @@ class DetailBookUser extends StatelessWidget {
                       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
                       textAlign: TextAlign.justify,
                       style: TextStyle(
-                        color: ColorData.textPrimary,
+                        color: textPrimary,
                         fontSize: 15,
                       ),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(15),
                       child: ElevatedButton(
-                        onPressed: () => print("pinjam"),
+                        onPressed: () {
+                          homeController.indexTab.value = 1;
+                          Get.back();
+                        },
                         child: Text(
                           "Borrow",
                           style: TextStyle(
-                            color: ColorData.textSecondary,
+                            color: textSecondary,
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
                         style: ElevatedButton.styleFrom(
                           minimumSize: Size(100, 40),
-                          primary: ColorData.tertiary,
+                          primary: tertiary,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(15),
                           ),
@@ -174,7 +177,7 @@ class DetailBookUser extends StatelessWidget {
                         Text(
                           "Similar Book",
                           style: TextStyle(
-                            color: ColorData.textPrimary,
+                            color: textPrimary,
                             fontSize: 18,
                             fontWeight: FontWeight.w300,
                           ),
@@ -182,7 +185,7 @@ class DetailBookUser extends StatelessWidget {
                         Text(
                           "View all",
                           style: TextStyle(
-                            color: ColorData.textSecondary,
+                            color: textSecondary,
                             fontSize: 15,
                             fontWeight: FontWeight.w300,
                           ),

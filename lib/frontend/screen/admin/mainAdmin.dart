@@ -2,44 +2,43 @@ import 'package:flutter/material.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
 import 'package:fluttericon/font_awesome_icons.dart';
 import 'package:get/get.dart';
-import 'package:perpus/backend/controller/user/homeControllerUser.dart';
-import 'package:perpus/frontend/screen/user/mainComponent/borrow.dart';
-import 'package:perpus/frontend/screen/user/mainComponent/home.dart';
+import 'package:perpus/backend/controller/admin/homeControllerAdmin.dart';
+import 'package:perpus/frontend/screen/admin/mainComponent/books.dart';
+import 'package:perpus/frontend/screen/admin/mainComponent/home.dart';
 import 'package:perpus/other/color.dart';
 
-class MainUser extends StatelessWidget {
+class MainAdmin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final homeUser = Get.put(HomeUserController());
-    List<Widget> _tabs() => listScreen;
+    final home = Get.put(HomeControllerAdmin());
+    List<Widget> _tabs() => listScreenAdmin;
     final List<Widget> _tab = _tabs();
     return Obx(
       () => Scaffold(
         bottomNavigationBar: BottomNavigationBar(
           items: bottomBarItem,
-          currentIndex: homeUser.indexTab.value,
-          type: BottomNavigationBarType.fixed,
-          backgroundColor: primary,
-          selectedItemColor: textPrimary,
+          currentIndex: home.indexTab.value,
+          backgroundColor: secondary,
+          selectedItemColor: tertiary,
           unselectedItemColor: textSecondary,
           showSelectedLabels: false,
           showUnselectedLabels: false,
           iconSize: 30,
           onTap: (i) {
-            homeUser.indexTab.value = i;
+            home.indexTab.value = i;
           },
         ),
         body: SafeArea(
-          child: Container(child: _tab[homeUser.indexTab.value]),
+          child: Container(child: _tab[home.indexTab.value]),
         ),
       ),
     );
   }
 }
 
-List<Widget> listScreen = [
-  HomeUser(),
-  BorrowUser(),
+List<Widget> listScreenAdmin = [
+  HomeAdmin(),
+  ListBooksAdmin(),
   Text("page 3"),
   Text("page 4"),
 ];
@@ -50,12 +49,12 @@ List<BottomNavigationBarItem> bottomBarItem = [
     label: "Home",
   ),
   BottomNavigationBarItem(
-    icon: Icon(FontAwesome5.handshake),
-    label: "Borrowed",
+    icon: Icon(FontAwesome.book),
+    label: "Books",
   ),
   BottomNavigationBarItem(
-    icon: Icon(FontAwesome.bookmark),
-    label: "Favorites",
+    icon: Icon(FontAwesome5.handshake),
+    label: "Borrowed",
   ),
   BottomNavigationBarItem(
     icon: Icon(FontAwesome.user_secret),

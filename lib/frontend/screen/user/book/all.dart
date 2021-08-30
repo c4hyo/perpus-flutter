@@ -11,7 +11,6 @@ class AllBookUser extends StatelessWidget {
   Widget build(BuildContext context) {
     final books = Get.put<BooksController>(BooksController());
     return Scaffold(
-      backgroundColor: ColorData.primary,
       appBar: AppBar(
         actions: [
           Obx(() {
@@ -20,7 +19,7 @@ class AllBookUser extends StatelessWidget {
                 books.isList.isTrue
                     ? FontAwesome5.list
                     : FontAwesome5.grip_vertical,
-                color: ColorData.textPrimary,
+                color: textPrimary,
               ),
               onPressed: () => books.isList.toggle(),
             );
@@ -30,14 +29,14 @@ class AllBookUser extends StatelessWidget {
         leading: IconButton(
           icon: Icon(
             FontAwesome5.arrow_alt_circle_left,
-            color: ColorData.textPrimary,
+            color: textPrimary,
           ),
           onPressed: () => Get.back(),
         ),
-        backgroundColor: ColorData.primary,
+        backgroundColor: Colors.white,
         title: Text(
           "All Books",
-          style: TextStyle(color: ColorData.textPrimary),
+          style: TextStyle(color: textPrimary),
         ),
         centerTitle: true,
         bottom: PreferredSize(

@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.perpus">
    <application
-        android:label="perpus"
+        android:label="Perpustakaan Online"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

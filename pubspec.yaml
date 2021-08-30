@@ -32,6 +32,11 @@ dependencies:
   google_fonts: ^2.1.0
   fluttericon: ^2.0.0
 
+  cloud_firestore: ^2.5.0
+  firebase_auth: ^3.0.2
+  firebase_core: ^1.5.0
+  firebase_storage: ^10.0.2
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

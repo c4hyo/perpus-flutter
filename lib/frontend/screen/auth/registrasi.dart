@@ -1,14 +1,19 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:perpus/backend/controller/authController.dart';
 import 'package:perpus/other/color.dart';
 import 'package:perpus/other/theme.dart';
 
 class RegistrationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final auth = Get.find<AuthController>();
+    final email = TextEditingController();
+    final name = TextEditingController();
+    final password = TextEditingController();
     return Scaffold(
-      backgroundColor: ColorData.primary,
+      backgroundColor: primary,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -56,7 +61,7 @@ class RegistrationScreen extends StatelessWidget {
                         "Hello there, sign in to continue",
                         style: TextStyle(
                           fontSize: 17,
-                          color: ColorData.textSecondary,
+                          color: textSecondary,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -67,13 +72,14 @@ class RegistrationScreen extends StatelessWidget {
                         "Full Name",
                         style: TextStyle(
                           fontSize: 17,
-                          color: ColorData.textSecondary,
+                          color: textSecondary,
                         ),
                       ),
                       SizedBox(
                         height: 15,
                       ),
                       TextFormField(
+                        controller: name,
                         decoration: InputDecoration(
                           fillColor: Colors.grey.shade300,
                           filled: true,
@@ -90,13 +96,15 @@ class RegistrationScreen extends StatelessWidget {
                         "Email",
                         style: TextStyle(
                           fontSize: 17,
-                          color: ColorData.textSecondary,
+                          color: textSecondary,
                         ),
                       ),
                       SizedBox(
                         height: 15,
                       ),
                       TextFormField(
+                        controller: email,
+                        keyboardType: TextInputType.emailAddress,
                         decoration: InputDecoration(
                           fillColor: Colors.grey.shade300,
                           filled: true,
@@ -113,13 +121,15 @@ class RegistrationScreen extends StatelessWidget {
                         "Password",
                         style: TextStyle(
                           fontSize: 17,
-                          color: ColorData.textSecondary,
+                          color: textSecondary,
                         ),
                       ),
                       SizedBox(
                         height: 15,
                       ),
                       TextFormField(
+                        controller: password,
+                        obscureText: true,
                         decoration: InputDecoration(
                           fillColor: Colors.grey.shade300,
                           filled: true,
@@ -136,7 +146,7 @@ class RegistrationScreen extends StatelessWidget {
                         "Confirmation Password",
                         style: TextStyle(
                           fontSize: 17,
-                          color: ColorData.textSecondary,
+                          color: textSecondary,
                         ),
                       ),
                       SizedBox(
@@ -159,29 +169,62 @@ class RegistrationScreen extends StatelessWidget {
                         "Forgot Password ?",
                         style: TextStyle(
                           fontSize: 17,
-                          color: ColorData.primary,
+                          color: secondary,
                         ),
                       ),
                       SizedBox(
                         height: 15,
                       ),
-                      ElevatedButton(
-                        onPressed: () => print("Login"),
-                        child: Text(
-                          "Sign In",
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        style: ElevatedButton.styleFrom(
-                          minimumSize: Size(double.infinity, 60),
-                          primary: ColorData.primary,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(15),
-                          ),
-                        ),
-                      ),
+                      Obx(() {
+                        return (auth.registrations.isTrue)
+                            ? Container(
+                                height: 60,
+                                width: double.infinity,
+                                child: CircularProgressIndicator.adaptive(),
+                              )
+                            : ElevatedButton(
+                                onPressed: () {
+                                  auth.registrations.value = true;
+                                  if (password.text.isEmpty ||
+                                      email.text.isEmpty ||
+                                      name.text.isEmpty) {
+                                    Get.snackbar(
+                                      "Error",
+                                      "All filed cannot be null",
+                                      snackPosition: SnackPosition.BOTTOM,
+                                    );
+                                  }
+                                  if (!GetUtils.isEmail(email.text)) {
+                                    Get.snackbar(
+                                      "Error",
+                                      "Email is not valid",
+                                      snackPosition: SnackPosition.BOTTOM,
+                                    );
+                                  }
+                                  auth.registrasi(
+                                    email: email.text,
+                                    nama: name.text,
+                                    password: password.text,
+                                  );
+                                  Get.back();
+                                },
+                                child: Text(
+                                  "Sign Up",
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                    color: textPrimary,
+                                  ),
+                                ),
+                                style: ElevatedButton.styleFrom(
+                                  minimumSize: Size(double.infinity, 60),
+                                  primary: primary,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(15),
+                                  ),
+                                ),
+                              );
+                      }),
                       SizedBox(
                         height: 25,
                       ),
@@ -192,11 +235,11 @@ class RegistrationScreen extends StatelessWidget {
                               TextSpan(
                                   text: "Back to ",
                                   style: TextStyle(
-                                    color: ColorData.textPrimary,
+                                    color: textPrimary,
                                   )),
                               TextSpan(
                                 text: "Login",
-                                style: TextStyle(color: ColorData.primary),
+                                style: TextStyle(color: secondary),
                                 recognizer: TapGestureRecognizer()
                                   ..onTap = () {
                                     Get.back();

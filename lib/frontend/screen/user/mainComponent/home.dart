@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
 import 'package:get/get.dart';
+import 'package:perpus/backend/controller/authController.dart';
+import 'package:perpus/backend/controller/user/homeControllerUser.dart';
+import 'package:perpus/backend/controller/userController.dart';
 import 'package:perpus/frontend/component/card.dart';
 import 'package:perpus/frontend/screen/user/book/all.dart';
 import 'package:perpus/frontend/screen/user/book/detail.dart';
@@ -10,6 +13,9 @@ import 'package:perpus/other/color.dart';
 class HomeUser extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final auth = Get.find<AuthController>();
+    final user = Get.find<UserController>();
+    final home = Get.find<HomeUserController>();
     return Padding(
       padding: const EdgeInsets.all(20),
       child: SingleChildScrollView(
@@ -34,17 +40,22 @@ class HomeUser extends StatelessWidget {
                     SizedBox(
                       height: 10,
                     ),
-                    Text(
-                      "Hello Midas",
-                      style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
+                    Obx(
+                      () => Text(
+                        "Hello ${user.userModel.name}",
+                        style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     )
                   ],
                 ),
                 IconButton(
-                  onPressed: () => print("notif"),
+                  onPressed: () {
+                    home.indexTab.value = 0;
+                    auth.logout();
+                  },
                   icon: Icon(FontAwesome5.bell),
                 ),
               ],
@@ -58,17 +69,17 @@ class HomeUser extends StatelessWidget {
                 Text(
                   "Top Available for you",
                   style: TextStyle(
-                    color: ColorData.textPrimary,
+                    color: textPrimary,
                     fontSize: 18,
                     fontWeight: FontWeight.w300,
                   ),
                 ),
                 GestureDetector(
-                  onTap: ()=>Get.to(()=>AllBookUser()),
+                  onTap: () => Get.to(() => AllBookUser()),
                   child: Text(
                     "View all",
                     style: TextStyle(
-                      color: ColorData.textSecondary,
+                      color: textSecondary,
                       fontSize: 15,
                       fontWeight: FontWeight.w300,
                     ),
@@ -97,7 +108,7 @@ class HomeUser extends StatelessWidget {
                 Text(
                   "Pick from Popular Genre",
                   style: TextStyle(
-                    color: ColorData.textPrimary,
+                    color: textPrimary,
                     fontSize: 18,
                     fontWeight: FontWeight.w300,
                   ),
@@ -105,7 +116,7 @@ class HomeUser extends StatelessWidget {
                 Text(
                   "View all",
                   style: TextStyle(
-                    color: ColorData.textSecondary,
+                    color: textSecondary,
                     fontSize: 15,
                     fontWeight: FontWeight.w300,
                   ),
@@ -130,7 +141,7 @@ class HomeUser extends StatelessWidget {
                 Text(
                   "Your Recently Borrowed Books",
                   style: TextStyle(
-                    color: ColorData.textPrimary,
+                    color: textPrimary,
                     fontSize: 18,
                     fontWeight: FontWeight.w300,
                   ),
@@ -138,7 +149,7 @@ class HomeUser extends StatelessWidget {
                 Text(
                   "View all",
                   style: TextStyle(
-                    color: ColorData.textSecondary,
+                    color: textSecondary,
                     fontSize: 15,
                     fontWeight: FontWeight.w300,
                   ),

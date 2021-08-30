@@ -1,18 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
-import 'package:perpus/frontend/component/card.dart';
+import 'package:get/get.dart';
+import 'package:perpus/frontend/screen/admin/book/add.dart';
 import 'package:perpus/other/color.dart';
 import 'package:perpus/other/theme.dart';
 
-class BorrowUser extends StatelessWidget {
+class ListBooksAdmin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: tertiary,
+        onPressed: () => Get.to(
+          () => AddBook(),
+        ),
+        child: Icon(
+          FontAwesome5.plus_circle,
+          color: Colors.white,
+        ),
+      ),
       appBar: AppBar(
-        backgroundColor: Colors.white,
         elevation: 0,
+        backgroundColor: Colors.white,
         title: Text(
-          "All Borrowed Books",
+          "All Books",
           style: TextStyle(color: textPrimary),
         ),
         centerTitle: true,
@@ -32,15 +43,6 @@ class BorrowUser extends StatelessWidget {
               ),
             ),
           ),
-        ),
-      ),
-      body: Padding(
-        padding: EdgeInsets.all(20),
-        child: ListView.builder(
-          itemCount: 5,
-          itemBuilder: (_, index) {
-            return CardListBook();
-          },
         ),
       ),
     );

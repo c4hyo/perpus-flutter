@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class BooksModel {
   String? idBook;
   String? title;
@@ -20,4 +22,16 @@ class BooksModel {
     this.title,
     this.imageUrl,
   });
+
+  BooksModel.fromDoc(DocumentSnapshot doc) {
+    idBook = doc.id;
+    description = doc['description'];
+    genre = doc['genre'];
+    idWritter = doc['id_writter'];
+    pages = doc['pages'];
+    qty = doc['qty'];
+    release = doc['release'];
+    title = doc['title'];
+    imageUrl = doc['image_url'];
+  }
 }

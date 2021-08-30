@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:fluttericon/font_awesome5_icons.dart';
 import 'package:get/get.dart';
 import 'package:perpus/other/color.dart';
 
@@ -10,7 +9,7 @@ class CardImage extends StatelessWidget {
       height: 200,
       width: 150,
       child: Card(
-        color: ColorData.textSecondary,
+        color: textSecondary,
         child: FlutterLogo(),
       ),
     );
@@ -33,7 +32,7 @@ class CardListBook extends StatelessWidget {
                 child: Container(
                   width: Get.width,
                   height: Get.width / 3,
-                  color: ColorData.tertiary,
+                  color: primary,
                 ),
               ),
             ),
@@ -43,18 +42,6 @@ class CardListBook extends StatelessWidget {
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: CardImage(),
-              ),
-            ),
-            Positioned.fill(
-              right: 20,
-              top: 20,
-              child: Align(
-                alignment: Alignment.topRight,
-                child: Icon(
-                  FontAwesome5.arrow_alt_circle_right,
-                  size: 25,
-                  color: ColorData.textSecondary,
-                ),
               ),
             ),
             Positioned.fill(
@@ -77,7 +64,7 @@ class CardListBook extends StatelessWidget {
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            color: ColorData.textPrimary,
+                            color: textPrimary,
                             fontSize: 18,
                           ),
                         ),
@@ -88,7 +75,7 @@ class CardListBook extends StatelessWidget {
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
                             fontWeight: FontWeight.normal,
-                            color: ColorData.textSecondary,
+                            color: textSecondary,
                             fontSize: 14,
                           ),
                         ),
@@ -109,17 +96,17 @@ class CardGridBook extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: Get.width/2,
-      width: Get.width/2,
+      height: Get.width / 2,
+      width: Get.width / 2,
       child: Stack(
         children: [
           Positioned.fill(
             child: Align(
               alignment: Alignment.bottomCenter,
               child: Container(
-                width: Get.width/2,
-                height: Get.width/3,
-                color: ColorData.tertiary,
+                width: Get.width / 2,
+                height: Get.width / 3,
+                color: primary,
               ),
             ),
           ),
@@ -133,8 +120,8 @@ class CardGridBook extends StatelessWidget {
             child: Align(
               alignment: Alignment.bottomCenter,
               child: Container(
-                width: Get.width/2,
-                height: Get.width/4,
+                width: Get.width / 2,
+                height: Get.width / 4,
                 child: Padding(
                   padding: const EdgeInsets.all(10),
                   child: Column(
@@ -147,7 +134,7 @@ class CardGridBook extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: ColorData.textPrimary,
+                          color: textPrimary,
                           fontSize: 18,
                         ),
                       ),
@@ -158,7 +145,7 @@ class CardGridBook extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
                           fontWeight: FontWeight.normal,
-                          color: ColorData.textSecondary,
+                          color: textSecondary,
                           fontSize: 14,
                         ),
                       ),
